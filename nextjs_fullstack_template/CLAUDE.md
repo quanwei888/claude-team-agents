@@ -8,9 +8,9 @@
 
 | 角色 | 可写目录 | 可读目录 |
 |------|---------|---------|
-| PM   | `docs/requirements/`, `docs/acceptance/` | 全部 |
-| Dev  | `src/`, `docs/design/` | 全部 |
-| QA   | `tests/`, `docs/test-reports/` | 全部 |
+| PM   | `pm/` | 全部 |
+| Dev  | `dev/` | 全部 |
+| QA   | `qa/` | 全部 |
 
 **规则：不要写入其他角色的目录。** 如果需要对其他角色的产出提出修改意见，通过消息通知对方，由对方自己修改。
 
@@ -28,20 +28,20 @@
 每个角色在以下时机必须主动发消息：
 
 **PM Agent：**
-- 需求文档完成后 → message Dev："需求已就绪：docs/requirements/REQ-XXX.md，请开始设计"
+- 需求文档完成后 → message Dev："需求已就绪：pm/requirements/REQ-XXX.md，请开始设计"
 - 验收不通过 → message Dev："验收问题：[具体问题]，请修复"
 - 验收通过 → broadcast："REQ-XXX 验收通过，任务关闭"
 
 **Dev Agent：**
-- 设计方案完成后 → message PM："设计方案已提交：docs/design/REQ-XXX-design.md，请审阅"
-- 编码完成后 → message QA："代码已完成，入口文件：src/XXX，请开始测试"
+- 设计方案完成后 → message PM："设计方案已提交：dev/design/REQ-XXX-design.md，请审阅"
+- 编码完成后 → message QA："代码已完成，入口文件：dev/src/XXX，请开始测试"
 - Bug 修复后 → message QA："Bug 已修复：[修复说明]，请回归测试"
 - 需要需求澄清时 → message PM："需求疑问：[具体问题]"
 
 **QA Agent：**
-- 测试计划完成后 → message Dev："测试计划已就绪：docs/test-reports/REQ-XXX-plan.md"
+- 测试计划完成后 → message Dev："测试计划已就绪：qa/reports/REQ-XXX-plan.md"
 - 发现 Bug → message Dev："发现 Bug：[问题描述、复现步骤、期望行为]"
-- 全部测试通过 → message PM："REQ-XXX 全部测试通过，请验收。报告：docs/test-reports/REQ-XXX-report.md"
+- 全部测试通过 → message PM："REQ-XXX 全部测试通过，请验收。报告：qa/reports/REQ-XXX-report.md"
 - 回归测试通过 → message PM："回归测试通过，请验收"
 
 ### 消息格式
@@ -66,11 +66,11 @@
 
 ## 文件命名规范
 
-- 需求文档：`docs/requirements/REQ-{序号}-{简短描述}.md`
-- 设计文档：`docs/design/REQ-{序号}-design.md`
-- 测试计划：`docs/test-reports/REQ-{序号}-test-plan.md`
-- 测试报告：`docs/test-reports/REQ-{序号}-test-report.md`
-- 验收记录：`docs/acceptance/REQ-{序号}-acceptance.md`
+- 需求文档：`pm/requirements/REQ-{序号}-{简短描述}.md`
+- 验收记录：`pm/acceptance/REQ-{序号}-acceptance.md`
+- 设计文档：`dev/design/REQ-{序号}-design.md`
+- 测试计划：`qa/reports/REQ-{序号}-test-plan.md`
+- 测试报告：`qa/reports/REQ-{序号}-test-report.md`
 
 ## 技术栈
 
@@ -86,20 +86,27 @@
 ## 目录结构
 
 ```
-src/
-├── app/               # App Router 页面 & API Routes
-│   ├── (routes)/      # 前端页面
-│   └── api/           # Route Handlers (后端 API)
-├── components/        # React 组件
-│   └── ui/            # shadcn/ui 组件
-├── lib/               # 工具函数、数据库客户端等
-├── prisma/            # Prisma schema & migrations
-└── package.json
-tests/
-├── components/        # 组件测试
-├── api/               # API Route 测试
-├── lib/               # 工具函数测试
-└── e2e/               # Playwright E2E/RPA 测试
+├── pm/                    # PM 产出物
+│   ├── requirements/      # 需求文档
+│   └── acceptance/        # 验收记录
+├── dev/                   # Dev 产出物（同时也是 Next.js 项目根目录）
+│   ├── package.json
+│   ├── design/            # 设计文档
+│   ├── prisma/            # Prisma schema & migrations
+│   └── src/               # 源代码
+│       ├── app/           # App Router 页面 & API Routes
+│       │   ├── (routes)/  # 前端页面
+│       │   └── api/       # Route Handlers (后端 API)
+│       ├── components/    # React 组件
+│       │   └── ui/        # shadcn/ui 组件
+│       └── lib/           # 工具函数、数据库客户端等
+└── qa/                    # QA 产出物
+    ├── reports/           # 测试计划 & 测试报告
+    └── tests/             # 测试代码
+        ├── components/    # 组件测试
+        ├── api/           # API Route 测试
+        ├── lib/           # 工具函数测试
+        └── e2e/           # Playwright E2E/RPA 测试
 ```
 
 ## 质量标准

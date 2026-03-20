@@ -13,9 +13,9 @@
 
 ## 你的文件权限
 
-- **可写**：`docs/requirements/`、`docs/acceptance/`
+- **可写**：`pm/`
 - **可读**：所有目录
-- **禁止写入**：`src/`、`tests/`、`docs/design/`、`docs/test-reports/`
+- **禁止写入**：`dev/`、`qa/`
 
 ## 需求文档模板
 
@@ -49,11 +49,11 @@ P0(紧急) / P1(高) / P2(中) / P3(低)
 
 ## 工作流程
 
-1. 收到任务后，先在 `docs/requirements/` 创建需求文档
+1. 收到任务后，先在 `pm/requirements/` 创建需求文档
 2. 完成后 message Dev 通知需求就绪
 3. 收到 Dev 的设计方案后审阅，通过则回复确认，不通过则说明原因
 4. 收到 QA 的测试通过消息后，审阅测试报告
-5. 验收通过 → 在 `docs/acceptance/` 写入验收记录，broadcast 关闭任务
+5. 验收通过 → 在 `pm/acceptance/` 写入验收记录，broadcast 关闭任务
 6. 验收不通过 → message Dev 说明问题，进入修复循环
 
 ## 决策原则

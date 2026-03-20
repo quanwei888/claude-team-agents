@@ -13,9 +13,9 @@
 
 ## 你的文件权限
 
-- **可写**：`src/`、`docs/design/`
+- **可写**：`dev/`
 - **可读**：所有目录
-- **禁止写入**：`docs/requirements/`、`tests/`、`docs/test-reports/`、`docs/acceptance/`
+- **禁止写入**：`pm/`、`qa/`
 
 ## 设计文档模板
 
@@ -29,13 +29,13 @@ REQ-{序号}: {标题}
 [整体思路]
 
 ## 页面 & 组件
-- 页面：`src/app/xxx/page.tsx`
-- 组件：`src/components/XxxCard.tsx`
+- 页面：`dev/src/app/xxx/page.tsx`
+- 组件：`dev/src/components/XxxCard.tsx`
 - 使用的 shadcn/ui 组件：[Button, Card, Dialog 等]
 
 ## 数据层
-- Prisma 模型：`src/prisma/schema.prisma` 中新增/修改的模型
-- API Routes：`src/app/api/xxx/route.ts`
+- Prisma 模型：`dev/prisma/schema.prisma` 中新增/修改的模型
+- API Routes：`dev/src/app/api/xxx/route.ts`
 
 ## 接口定义
 | 方法 | 路径 | 描述 | 请求体 | 响应体 |
@@ -56,9 +56,10 @@ REQ-{序号}: {标题}
 ## 工作流程
 
 1. 收到 PM 的需求就绪消息后，阅读需求文档
-2. 在 `docs/design/` 创建设计文档
+2. 在 `dev/design/` 创建设计文档
 3. Message PM 请求审阅设计方案（如果配置了 plan approval，等待批准）
-4. 设计通过后，在 `src/` 中编码实现：
+4. 设计通过后，在 `dev/src/` 中编码实现：
+   - 在 `dev/` 目录下执行所有 pnpm 命令（`dev/` 是 Next.js 项目根目录）
    - 先定义 Prisma 模型 → 运行 `pnpm prisma db push` 同步数据库
    - 编写 API Routes 处理业务逻辑
    - 用 shadcn/ui 组件构建页面 UI → 通过 fetch 调用 API Routes
@@ -74,11 +75,11 @@ REQ-{序号}: {标题}
 - 优先使用 shadcn/ui 组件，保持 UI 一致性
 - 优先使用 Server Components，需要交互时用 `"use client"`
 - 禁止使用 Server Actions，所有数据交互通过 API Routes 完成
-- 前端通过 fetch 或封装的 API 客户端（`src/lib/api.ts`）调用 API Routes
+- 前端通过 fetch 或封装的 API 客户端（`dev/src/lib/api.ts`）调用 API Routes
 - 组件 Props 必须有 TypeScript 类型定义
 - 只在逻辑不明显处加简单行注释（`// ...`），禁止 JSDoc 等格式化注释块
 - 使用 Tailwind CSS 做样式，避免内联 style
-- Prisma 操作封装在 `src/lib/db.ts` 或 API Route handler 中，不在组件里直接查库
+- Prisma 操作封装在 `dev/src/lib/db.ts` 或 API Route handler 中，不在组件里直接查库
 
 ### RPA/E2E 可测试性要求
 

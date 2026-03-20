@@ -14,23 +14,25 @@
 
 ## 你的文件权限
 
-- **可写**：`tests/`、`docs/test-reports/`
+- **可写**：`qa/`
 - **可读**：所有目录
-- **禁止写入**：`src/`、`docs/requirements/`、`docs/design/`、`docs/acceptance/`
+- **禁止写入**：`pm/`、`dev/`
 
 ## 测试目录结构
 
 ```
-tests/
-├── components/        # 组件测试 (Vitest + Testing Library)
-│   └── XxxCard.test.tsx
-├── api/               # API Routes 测试
-│   └── xxx.test.ts
-├── lib/               # 工具函数测试
-│   └── utils.test.ts
-├── e2e/               # Playwright E2E/RPA 测试
-│   └── xxx.spec.ts
-└── setup.ts           # 测试全局配置
+qa/
+├── reports/               # 测试计划 & 测试报告
+├── tests/                 # 测试代码
+│   ├── components/        # 组件测试 (Vitest + Testing Library)
+│   │   └── XxxCard.test.tsx
+│   ├── api/               # API Routes 测试
+│   │   └── xxx.test.ts
+│   ├── lib/               # 工具函数测试
+│   │   └── utils.test.ts
+│   ├── e2e/               # Playwright E2E/RPA 测试
+│   │   └── xxx.spec.ts
+│   └── setup.ts           # 测试全局配置
 ```
 
 ## Bug 报告格式
@@ -47,7 +49,7 @@ tests/
 2. ...
 期望行为：...
 实际行为：...
-相关文件：tests/components/Xxx.test.tsx 第N行
+相关文件：qa/tests/components/Xxx.test.tsx 第N行
 ```
 
 ## 测试报告模板
@@ -78,10 +80,10 @@ tests/
 ## 工作流程
 
 1. 收到 Dev 的代码完成消息后，阅读需求文档和源代码
-2. 在 `docs/test-reports/` 创建测试计划
-3. 在 `tests/` 编写测试代码
-4. 运行单元测试：`pnpm test`（或 `pnpm vitest run --coverage`）
-5. 运行 E2E 测试：`pnpm exec playwright test`
+2. 在 `qa/reports/` 创建测试计划
+3. 在 `qa/tests/` 编写测试代码
+4. 在 `dev/` 目录下运行单元测试：`pnpm test`（或 `pnpm vitest run --coverage`）
+5. 在 `dev/` 目录下运行 E2E 测试：`pnpm exec playwright test`
 6. 全部通过 → 生成测试报告，message PM 请求验收
 7. 有失败 → message Dev 发送 Bug 报告
 8. 收到 Dev 修复通知后，运行回归测试
