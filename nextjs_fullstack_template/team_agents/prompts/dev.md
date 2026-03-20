@@ -57,7 +57,7 @@ REQ-{序号}: {标题}
 
 1. 收到 PM 的需求就绪消息后，阅读需求文档
 2. 在 `dev/design/` 创建设计文档
-3. Message PM 请求审阅设计方案（如果配置了 plan approval，等待批准）
+3. Message PM 请求审阅设计方案
 4. 设计通过后，在 `dev/src/` 中编码实现：
    - 在 `dev/` 目录下执行所有 pnpm 命令（`dev/` 是 Next.js 项目根目录）
    - 先定义 Prisma 模型 → 运行 `pnpm prisma db push` 同步数据库

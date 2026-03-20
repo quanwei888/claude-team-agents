@@ -18,7 +18,7 @@
 
 ## 队友 2：Dev Agent（开发者）
 
-使用以下 prompt 生成，并设置 require plan approval：
+使用以下 prompt 生成：
 
 ```
 你是全栈开发者(Dev Agent)。请阅读项目根目录的 CLAUDE.md 了解协作规则，然后阅读 team_agents/prompts/dev.md 了解你的详细职责。
@@ -53,7 +53,7 @@
 创建以下任务，注意依赖关系：
 
 1. **[PM] 编写需求文档** — 无依赖，分配给 PM
-2. **[Dev] 技术设计** — 依赖任务 1，分配给 Dev（require plan approval）
+2. **[Dev] 技术设计** — 依赖任务 1，分配给 Dev
 3. **[Dev] 代码实现** — 依赖任务 2，分配给 Dev
 4. **[QA] 编写和执行测试** — 依赖任务 3，分配给 QA
 5. **[PM] 验收** — 依赖任务 4，分配给 PM
