@@ -1,4 +1,4 @@
-# Chespark - Team Agent 协作项目
+# Team Agent 协作项目
 
 ## 项目概述
 
